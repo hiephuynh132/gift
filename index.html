@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Ticket</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="scene" aria-label="Bao thu mo ra thanh golden ticket">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <section class="envelope-wrap">
+      <button class="envelope" type="button" aria-label="Mo bao thu">
+        <span class="spark spark-1"></span>
+        <span class="spark spark-2"></span>
+        <span class="spark spark-3"></span>
+
+        <span class="ticket" aria-hidden="true">
+          <span class="ticket-edge ticket-edge-left"></span>
+          <span class="ticket-edge ticket-edge-right"></span>
+          <span class="ticket-shine"></span>
+          <span class="ticket-kicker">HAPPY BIRTHDAY</span>
+          <span class="ticket-title">SANDY HUYNH</span>
+          <span class="ticket-copy">Một chuyến trekking 100% phí</span>
+          <span class="ticket-code">*Tài trợ dưới 5 triệu đồng</span>
+        </span>
+
+        <span class="letter" aria-hidden="true"></span>
+        <span class="back" aria-hidden="true"></span>
+        <span class="side side-left" aria-hidden="true"></span>
+        <span class="side side-right" aria-hidden="true"></span>
+        <span class="front" aria-hidden="true"></span>
+        <span class="flap" aria-hidden="true"></span>
+      </button>
+
+      <p class="hint">Ấn vào bao thư để mở</p>
+    </section>
+
+    <audio id="birthdayMusic" src="happy-birthday-music-box.mp3" preload="auto" loop></audio>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
