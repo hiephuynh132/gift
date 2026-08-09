@@ -67,7 +67,90 @@ body {
   background: #f6c44f;
 }
 
+.confetti-layer,
+.balloon-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-layer {
+  z-index: 21;
+}
+
+.balloon-layer {
+  z-index: 20;
+}
+
+.confetti {
+  position: absolute;
+  top: -36px;
+  left: var(--confetti-left);
+  width: var(--confetti-width);
+  height: var(--confetti-height);
+  border-radius: 2px;
+  background: var(--confetti-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+  opacity: 0;
+  transform: translateX(-50%) rotate(0deg);
+  animation: confetti-fall var(--confetti-duration) linear var(--confetti-delay) forwards;
+}
+
+.confetti:nth-child(3n) {
+  border-radius: 999px;
+}
+
+.confetti:nth-child(4n) {
+  width: calc(var(--confetti-width) * 1.7);
+  height: calc(var(--confetti-height) * 0.45);
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  left: var(--balloon-left);
+  width: var(--balloon-size);
+  aspect-ratio: 0.78;
+  border-radius: 50% 50% 46% 46%;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.72), transparent 16%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.22), transparent 38%),
+    var(--balloon-color);
+  box-shadow:
+    inset -10px -14px 18px rgba(0, 0, 0, 0.18),
+    0 10px 22px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: balloon-rise var(--balloon-duration) ease-in var(--balloon-delay) forwards;
+}
+
+.balloon::before {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  width: 12%;
+  height: 10%;
+  content: "";
+  background: inherit;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: translateX(-50%);
+}
+
+.balloon::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 72px;
+  content: "";
+  background: linear-gradient(rgba(255, 247, 223, 0.82), rgba(255, 247, 223, 0));
+  transform: translateX(-50%);
+}
+
 .envelope-wrap {
+  position: relative;
+  z-index: 4;
   display: grid;
   justify-items: center;
   gap: 28px;
@@ -392,6 +475,42 @@ body {
   100% {
     opacity: 0;
     transform: translateY(-54px) scale(1.45);
+  }
+}
+
+@keyframes balloon-rise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) rotate(-4deg) scale(0.86);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(calc(-50% + var(--balloon-drift-mid)), -48vh) rotate(5deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--balloon-drift)), -118vh) rotate(-6deg) scale(1.04);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -8vh) rotate(0deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--confetti-drift)), 108vh) rotate(var(--confetti-rotation));
   }
 }
 
